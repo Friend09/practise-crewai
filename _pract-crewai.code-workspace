@@ -3,6 +3,9 @@
 		{
 			"path": "."
 		},
+		{
+			"path": "../../../proj_Interviews/subproj_Resume/files_proj_Resume/Raghu/Resume"
+		}
 	],
 	"settings": {}
 }
