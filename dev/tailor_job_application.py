@@ -1,6 +1,7 @@
 from crewai import Agent, Task, Crew
 import warnings
 from langchain_openai import ChatOpenAI
+from langchain_anthropic import ChatAnthropic
 from crewai_tools import FileReadTool, ScrapeWebsiteTool, MDXSearchTool, SerperDevTool
 import os
 from dotenv import load_dotenv, find_dotenv
@@ -40,8 +41,9 @@ def tailor_job_application(
 
     # Initialize LLM
     # llm = ChatOpenAI(model="GPT-3.5-turbo")
-    llm = ChatOpenAI(model="gpt-4")
+    llm = ChatOpenAI(model="gpt-4-turbo")
     # llm = ChatOpenAI(model="gpt-4o")
+    # llm = ChatAnthropic(model="claude-3-opus-20240229")
 
     # Define tools
     tool_search = SerperDevTool()
@@ -51,7 +53,7 @@ def tailor_job_application(
 
     # Define agents
     agent_researcher = Agent(
-        role="Tech Job Researcher",
+        role="Tech Job Researcher", # dont change this. this is the agent ROLE
         goal="Make sure to do amazing analysis on job posting to help job applicants",
         backstory="As a Job Researcher, your prowess in navigating and extracting critical information from job postings is unmatched. Your skills help pinpoint the necessary qualifications and skills sought by employers, forming the foundation for effective application tailoring.",
         tools=[tool_scrape, tool_search],
@@ -146,30 +148,32 @@ def tailor_job_application(
     # Kickoff the crew
     result = crew_job_application.kickoff(inputs=inputs_job_application)
 
-    # Display results
-    display(Markdown(output_resume_file))
-    display(Markdown(output_interview_file))
+    # confirmation of end of script
+    print("Script Ended! please check path at: `/Users/vamsi_mbmax/Library/CloudStorage/OneDrive-Personal/01_vam_PROJECTS/LEARNING/proj_AI/dev_proj_AI/pract-crewai/files` for generated files")
 
 # Example usage
 # Define the job profile first
-JOB_PROFILE = "Sr-Manager-Technical-Product-Manager"
+JOB_PROFILE = "" # August 22, 2024 -> Lead Data Scientist
 
 tailor_job_application(
     JOB_PROFILE=JOB_PROFILE,
-    job_posting_url="https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/IL---Buffalo-Grove/Sr-Manager--Technical-Product-Manager_R0260972?shared_id=YTEwOTQ4OWItMGMyNS00MGY4LWE5MjAtZWI1MjI3ZTY0NTVl",
+    job_posting_url="https://careers.marshmclennan.com/global/en/job/R_276689/Lead-Data-Scientist",
     github_url="https://github.com/Friend09",
     personal_writeup="""
-    As an AI/ML Engineer with over 10 years of experience in Agile Project Management, 4 years in data science, and 10 years in business systems analysis, I am excited to bring my extensive expertise to the Enterprise Data & Machine Learning (EDML) organization at CVS Health. My career has been defined by a commitment to delivering transformative data solutions, managing complex projects, and driving innovation in IT operations.
+As a seasoned AI/ML Engineer with over 10 years of experience in Agile Project Management, 4+ years in data science, and 10 years in business systems analysis, I am excited to bring my extensive expertise to the Lead Data Scientist role at Marsh McLennan. My career has been defined by a commitment to delivering transformative data solutions, analyzing complex data using statistical and machine learning models, and driving innovation in IT operations through advanced analytics.
 
-    Throughout my career, I have successfully identified customer needs and translated them into actionable product visions that drive value across various business lines. My ability to communicate technical concepts to non-technical stakeholders has been a cornerstone of my success, allowing me to bridge the gap between business and technology seamlessly. I excel in developing and managing product roadmaps, prioritizing feature enhancements, and steering high-performing product lines to achieve cross-functional operational excellence.
+Throughout my tenure at Marsh McLennan, I have successfully identified business needs and translated them into actionable data-driven insights and machine learning models that drive value across various business lines. My proficiency in Python for data analysis, visualization, and working with APIs has been instrumental in developing innovative solutions for natural language processing and generative modeling tasks using NLP, Generative AI, and LLMs.
 
-    My experience in cloud technologies, particularly AWS, coupled with my proficiency in Agile Scrum methodologies, enables me to navigate development teams through organizational challenges and deliver automation and intelligent recommendations that improve product outcomes. I have a proven track record of leading cross-functional initiatives from planning through to launch, ensuring successful execution and continuous improvement.
+A key project that showcases my capabilities is the end-to-end tag prediction AI model I developed for ServiceNow incidents. This project involved extracting data from ServiceNow using its REST API, preprocessing the data, and implementing a tag prediction model using Langchain and OpenAI. The success of this initiative significantly improved categorization accuracy and enhanced planning and reporting capabilities for our teams.
 
-    At CVS Health, I am eager to leverage my technical product leadership to contribute to the development of innovative data products that align with the company’s mission of delivering human-centric health care. I am passionate about championing product management strategies across the enterprise, collaborating with stakeholders, and driving initiatives that enhance the efficiency and effectiveness of healthcare solutions.
+My experience with cloud technologies, particularly AWS, coupled with my proficiency in Agile Scrum methodologies, has enabled me to guide data science teams through organizational challenges and deliver automation and intelligent recommendations that improve analytical outcomes. I have a proven track record of leading cross-functional data initiatives from planning through to deployment, ensuring successful implementation of machine learning models and continuous improvement of data products.
 
-    With a strong foundation in machine learning, AI-driven solutions, and MLOps practices, I have implemented various projects that have significantly improved IT operations and service management. My work at Marsh & McLennan Company, where I led AI-based projects and developed end-to-end solutions for ServiceNow support ticket analysis, showcases my ability to deliver impactful results.
+With a strong foundation in machine learning, AI-driven solutions, and MLOps practices, I have implemented various projects that have significantly improved IT operations and service management. My work on AI-based projects, such as developing chatbots for mean time to resolution analysis and automating ticket tagging using AI-based model predictions, demonstrates my ability to deliver impactful results through advanced data science techniques.
 
-    I am enthusiastic about the opportunity to join CVS Health and contribute to its vision of making healthcare more personal, convenient, and affordable. I am confident that my skills, experience, and passion for innovation will make a valuable addition to the EDML organization and the broader CVS Health team.""",
+I am passionate about collaborating with cross-functional teams, understanding complex business requirements, and translating them into effective data science solutions. My experience in business analysis and working within an Agile framework has honed my ability to communicate findings and insights effectively to both technical and non-technical stakeholders.
+
+As a Lead Data Scientist at Marsh McLennan, I am eager to leverage my technical expertise and leadership skills to drive innovative data science initiatives, mentor team members, and contribute to the company's mission of solving complex challenges through data-driven innovation. I am confident that my combination of technical proficiency, business acumen, and collaborative approach will make a significant impact on the data science team and the broader Marsh McLennan organization.
+""",
     output_resume_file=f"/Users/vamsi_mbmax/Library/CloudStorage/OneDrive-Personal/01_vam_PROJECTS/LEARNING/proj_AI/dev_proj_AI/pract-crewai/files/resume_{JOB_PROFILE}.md",
     output_interview_file=f"/Users/vamsi_mbmax/Library/CloudStorage/OneDrive-Personal/01_vam_PROJECTS/LEARNING/proj_AI/dev_proj_AI/pract-crewai/files/interview_{JOB_PROFILE}.md"
 )
