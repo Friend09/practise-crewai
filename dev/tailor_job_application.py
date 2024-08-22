@@ -6,12 +6,14 @@ import os
 from dotenv import load_dotenv, find_dotenv
 from IPython.display import Markdown, display
 
+# This is my professional career profile (just keep updating this)
+PROFESSIONAL_PROFILE_MD="/Users/vamsi_mbmax/Library/CloudStorage/OneDrive-Personal/01_vam_PROJECTS/LEARNING/proj_Interviews/subproj_Resume/files_proj_Resume/Raghu/Resume/raghuvamsi_ayapilla_resume_details_for_ai_2024.md"
+
 def tailor_job_application(
     JOB_PROFILE: str,
     job_posting_url: str,
     github_url: str,
     personal_writeup: str,
-    resume_md_path: str,
     output_resume_file: str,
     output_interview_file: str
 ):
@@ -24,7 +26,6 @@ def tailor_job_application(
     - job_posting_url (str): URL of the job posting to analyze.
     - github_url (str): URL of the GitHub profile to use for extracting personal project information.
     - personal_writeup (str): A write-up providing a personal summary or introduction.
-    - resume_md_path (str): The path to the Markdown file of the original resume.
     - output_resume_file (str): The file path where the tailored resume will be saved.
     - output_interview_file (str): The file path where the interview preparation materials will be saved.
 
@@ -35,6 +36,7 @@ def tailor_job_application(
     _ = load_dotenv(find_dotenv())
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
     SERPER_API_KEY = os.getenv("SERPER_API_KEY")
+    CLAUDEAI_API_KEY = os.getenv("CLAUDEAI_API_KEY")
 
     # Initialize LLM
     # llm = ChatOpenAI(model="GPT-3.5-turbo")
@@ -44,8 +46,8 @@ def tailor_job_application(
     # Define tools
     tool_search = SerperDevTool()
     tool_scrape = ScrapeWebsiteTool()
-    tool_read_resume = FileReadTool(file_path=resume_md_path)
-    tool_semantic_search_resume = MDXSearchTool(mdx=resume_md_path)
+    tool_read_resume = FileReadTool(file_path=PROFESSIONAL_PROFILE_MD)
+    tool_semantic_search_resume = MDXSearchTool(mdx=PROFESSIONAL_PROFILE_MD)
 
     # Define agents
     agent_researcher = Agent(
@@ -150,14 +152,24 @@ def tailor_job_application(
 
 # Example usage
 # Define the job profile first
-JOB_PROFILE = "Senior Application Developer AI"
+JOB_PROFILE = "Sr-Manager-Technical-Product-Manager"
 
 tailor_job_application(
     JOB_PROFILE=JOB_PROFILE,
-    job_posting_url="https://careers.marshmclennan.com/global/en/job/R_276678/Senior-Application-Developer-AI",
+    job_posting_url="https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/IL---Buffalo-Grove/Sr-Manager--Technical-Product-Manager_R0260972?shared_id=YTEwOTQ4OWItMGMyNS00MGY4LWE5MjAtZWI1MjI3ZTY0NTVl",
     github_url="https://github.com/Friend09",
-    personal_writeup="As an experienced AI/ML Engineer, Raghu specialize in leveraging data science and machine learning to drive business transformation and operational excellence. His career is marked by a deep passion for developing innovative AI solutions that solve complex business challenges and enhance decision-making processes.",
-    resume_md_path="/Users/vamsi_mbmax/Library/CloudStorage/OneDrive-Personal/01_vam_PROJECTS/LEARNING/proj_Interviews/subproj_Resume/files_proj_Resume/Raghu/Resume/raghuvamsi_ayapilla_resume_2024.md",
+    personal_writeup="""
+    As an AI/ML Engineer with over 10 years of experience in Agile Project Management, 4 years in data science, and 10 years in business systems analysis, I am excited to bring my extensive expertise to the Enterprise Data & Machine Learning (EDML) organization at CVS Health. My career has been defined by a commitment to delivering transformative data solutions, managing complex projects, and driving innovation in IT operations.
+
+    Throughout my career, I have successfully identified customer needs and translated them into actionable product visions that drive value across various business lines. My ability to communicate technical concepts to non-technical stakeholders has been a cornerstone of my success, allowing me to bridge the gap between business and technology seamlessly. I excel in developing and managing product roadmaps, prioritizing feature enhancements, and steering high-performing product lines to achieve cross-functional operational excellence.
+
+    My experience in cloud technologies, particularly AWS, coupled with my proficiency in Agile Scrum methodologies, enables me to navigate development teams through organizational challenges and deliver automation and intelligent recommendations that improve product outcomes. I have a proven track record of leading cross-functional initiatives from planning through to launch, ensuring successful execution and continuous improvement.
+
+    At CVS Health, I am eager to leverage my technical product leadership to contribute to the development of innovative data products that align with the company’s mission of delivering human-centric health care. I am passionate about championing product management strategies across the enterprise, collaborating with stakeholders, and driving initiatives that enhance the efficiency and effectiveness of healthcare solutions.
+
+    With a strong foundation in machine learning, AI-driven solutions, and MLOps practices, I have implemented various projects that have significantly improved IT operations and service management. My work at Marsh & McLennan Company, where I led AI-based projects and developed end-to-end solutions for ServiceNow support ticket analysis, showcases my ability to deliver impactful results.
+
+    I am enthusiastic about the opportunity to join CVS Health and contribute to its vision of making healthcare more personal, convenient, and affordable. I am confident that my skills, experience, and passion for innovation will make a valuable addition to the EDML organization and the broader CVS Health team.""",
     output_resume_file=f"/Users/vamsi_mbmax/Library/CloudStorage/OneDrive-Personal/01_vam_PROJECTS/LEARNING/proj_AI/dev_proj_AI/pract-crewai/files/resume_{JOB_PROFILE}.md",
     output_interview_file=f"/Users/vamsi_mbmax/Library/CloudStorage/OneDrive-Personal/01_vam_PROJECTS/LEARNING/proj_AI/dev_proj_AI/pract-crewai/files/interview_{JOB_PROFILE}.md"
 )
