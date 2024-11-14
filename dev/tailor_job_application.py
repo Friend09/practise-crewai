@@ -23,7 +23,7 @@ def tailor_job_application(
     refining a resume, and preparing for interviews.
 
     Parameters:
-    - JOB_PROFILE (str): The job profile title for the application (e.g., 'Senior Application Developer AI').
+    - JOB_PROFILE (str): The job profile title for the application (e.g., 'AI ML Engineer').
     - job_posting_url (str): URL of the job posting to analyze.
     - github_url (str): URL of the GitHub profile to use for extracting personal project information.
     - personal_writeup (str): A write-up providing a personal summary or introduction.
@@ -41,8 +41,8 @@ def tailor_job_application(
 
     # Initialize LLM
     # llm = ChatOpenAI(model="GPT-3.5-turbo")
-    llm = ChatOpenAI(model="gpt-4-turbo")
-    # llm = ChatOpenAI(model="gpt-4o")
+    # llm = ChatOpenAI(model="gpt-4-turbo")
+    llm = ChatOpenAI(model="gpt-4o")
     # llm = ChatAnthropic(model="claude-3-opus-20240229")
 
     # Define tools
@@ -153,27 +153,27 @@ def tailor_job_application(
 
 # Example usage
 # Define the job profile first
-JOB_PROFILE = "" # August 22, 2024 -> Lead Data Scientist
+JOB_PROFILE = "" # November 14, 2024 -> AI & ML Engineer
 
 tailor_job_application(
     JOB_PROFILE=JOB_PROFILE,
-    job_posting_url="https://careers.marshmclennan.com/global/en/job/R_276689/Lead-Data-Scientist",
+    job_posting_url="https://careers.ey.com/ey/job/New-York-AI-&-Machine-Learning-Engineer-Manager-Consulting-Location-OPEN-NY-10001-8604/1120933901/?feedId=337401&utm_source=LinkedInJobPostings&utm_campaign=j2w_linkedin",
     github_url="https://github.com/Friend09",
     personal_writeup="""
-As a seasoned AI/ML Engineer with over 10 years of experience in Agile Project Management, 4+ years in data science, and 10 years in business systems analysis, I am excited to bring my extensive expertise to the Lead Data Scientist role at Marsh McLennan. My career has been defined by a commitment to delivering transformative data solutions, analyzing complex data using statistical and machine learning models, and driving innovation in IT operations through advanced analytics.
+As a seasoned AI/ML Engineer with over 10 years of experience in Agile Project Management, 4+ years in data science, and 10 years in business systems analysis, I am excited to bring my comprehensive expertise in advanced data and machine learning solutions to the AI/Machine Learning Engineer - Manager role at EY. My career has been defined by a commitment to leveraging cutting-edge technology and advanced analytics to solve complex challenges, drive innovation, and enhance decision-making across business functions.
 
-Throughout my tenure at Marsh McLennan, I have successfully identified business needs and translated them into actionable data-driven insights and machine learning models that drive value across various business lines. My proficiency in Python for data analysis, visualization, and working with APIs has been instrumental in developing innovative solutions for natural language processing and generative modeling tasks using NLP, Generative AI, and LLMs.
+Throughout my tenure at Marsh McLennan, I successfully transformed business needs into actionable, data-driven insights and machine learning models, driving significant value across various business lines. I have a deep proficiency in Python for data analysis, visualization, and API integration, which has been instrumental in developing scalable solutions, particularly for natural language processing and generative AI tasks. My expertise in frameworks like LangChain and OpenAI, as well as my experience with large language models (LLMs), positions me well to guide clients through the nuances of Generative AI and Retrieval-Augmented Generation (RAG) systems.
 
-A key project that showcases my capabilities is the end-to-end tag prediction AI model I developed for ServiceNow incidents. This project involved extracting data from ServiceNow using its REST API, preprocessing the data, and implementing a tag prediction model using Langchain and OpenAI. The success of this initiative significantly improved categorization accuracy and enhanced planning and reporting capabilities for our teams.
+A project that showcases my skills and hands-on problem-solving approach is the end-to-end tag prediction model I developed for ServiceNow incidents. Using ServiceNow’s REST API, I extracted, preprocessed, and implemented an accurate tag prediction model that enhanced planning and reporting capabilities, boosting both automation and decision accuracy. This project reflects my experience designing and deploying complete ML workflows, including MLOps practices, model pipelines, and continuous monitoring—all critical for effective machine learning engineering.
 
-My experience with cloud technologies, particularly AWS, coupled with my proficiency in Agile Scrum methodologies, has enabled me to guide data science teams through organizational challenges and deliver automation and intelligent recommendations that improve analytical outcomes. I have a proven track record of leading cross-functional data initiatives from planning through to deployment, ensuring successful implementation of machine learning models and continuous improvement of data products.
+In addition to technical expertise, I have extensive experience with cloud computing platforms such as AWS, which has equipped me to lead projects involving containerization, model scaling, and deploying robust ML systems. I am proficient with DevOps tools including Git, Azure DevOps, and Agile project management platforms like Jira, which enables me to guide teams in delivering complex, feature-rich AI applications efficiently. My experience with CI/CD pipelines and test-driven development further ensures that the models I implement are not only powerful but also maintainable and resilient.
 
-With a strong foundation in machine learning, AI-driven solutions, and MLOps practices, I have implemented various projects that have significantly improved IT operations and service management. My work on AI-based projects, such as developing chatbots for mean time to resolution analysis and automating ticket tagging using AI-based model predictions, demonstrates my ability to deliver impactful results through advanced data science techniques.
+My background also includes developing intelligent applications for IT operations, such as chatbots for mean time to resolution analysis and automated ticket tagging. These initiatives demonstrate my ability to deliver impactful AI-driven solutions that improve both client outcomes and internal operational efficiencies.
 
-I am passionate about collaborating with cross-functional teams, understanding complex business requirements, and translating them into effective data science solutions. My experience in business analysis and working within an Agile framework has honed my ability to communicate findings and insights effectively to both technical and non-technical stakeholders.
+I am passionate about fostering a collaborative environment and thrive in client-facing roles where I can understand unique business requirements and communicate data-driven recommendations effectively. With a solid foundation in agile methodologies, I am skilled at translating complex technical concepts for diverse audiences, which is essential for the fast-paced, client-centered consulting environment at EY.
 
-As a Lead Data Scientist at Marsh McLennan, I am eager to leverage my technical expertise and leadership skills to drive innovative data science initiatives, mentor team members, and contribute to the company's mission of solving complex challenges through data-driven innovation. I am confident that my combination of technical proficiency, business acumen, and collaborative approach will make a significant impact on the data science team and the broader Marsh McLennan organization.
+As an AI/Machine Learning Engineer at EY, I am eager to contribute my technical knowledge, strategic insight, and mentoring experience to lead teams in delivering innovative, scalable solutions that align with EY’s vision of building a better working world. My combination of technical depth, practical experience, and commitment to continuous learning will enable me to make a meaningful impact for EY’s clients and broader organizational goals.
 """,
-    output_resume_file=f"/Users/vamsi_mbmax/Library/CloudStorage/OneDrive-Personal/01_vam_PROJECTS/LEARNING/proj_AI/dev_proj_AI/pract-crewai/files/resume_{JOB_PROFILE}.md",
-    output_interview_file=f"/Users/vamsi_mbmax/Library/CloudStorage/OneDrive-Personal/01_vam_PROJECTS/LEARNING/proj_AI/dev_proj_AI/pract-crewai/files/interview_{JOB_PROFILE}.md"
+    output_resume_file=f"/Users/vamsi_mbmax/Library/CloudStorage/OneDrive-Personal/01_vam_PROJECTS/LEARNING/proj_AI/dev_proj_AI/pract-crewai-resume/files/resume_{JOB_PROFILE}.md",
+    output_interview_file=f"/Users/vamsi_mbmax/Library/CloudStorage/OneDrive-Personal/01_vam_PROJECTS/LEARNING/proj_AI/dev_proj_AI/pract-crewai-resume/files/interview_{JOB_PROFILE}.md"
 )
