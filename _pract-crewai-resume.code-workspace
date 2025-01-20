@@ -2,9 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "../../../proj_Interviews/subproj_Resume"
 		}
 	],
 	"settings": {}
